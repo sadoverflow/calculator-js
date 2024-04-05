@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Calculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="main">
+            <button id="state">GET CURRENT STATE</button>
+            <div class="wrapper">
+                <div id="input-box">
+                    <div id="input">0</div>
+                </div>
+                <div>
+                    <div class="row">
+                        <input
+                            type="button"
+                            id="clear"
+                            class="other"
+                            value="AC"
+                        />
+                        <input
+                            type="button"
+                            id="sign"
+                            class="other"
+                            value="±"
+                        />
+                        <input
+                            type="button"
+                            id="percent"
+                            class="other"
+                            value="%"
+                        />
+                        <input
+                            type="button"
+                            id="divide"
+                            class="operator"
+                            value="÷"
+                        />
+                    </div>
+                    <div class="row">
+                        <input class="number" value="7" type="button" />
+                        <input class="number" value="8" type="button" />
+                        <input class="number" value="9" type="button" />
+                        <input class="operator" value="×" type="button" />
+                    </div>
+                    <div class="row">
+                        <input class="number" value="4" type="button" />
+                        <input class="number" value="5" type="button" />
+                        <input class="number" value="6" type="button" />
+                        <input class="operator" value="-" type="button" />
+                    </div>
+                    <div class="row">
+                        <input class="number" value="1" type="button" />
+                        <input class="number" value="2" type="button" />
+                        <input class="number" value="3" type="button" />
+                        <input class="operator" value="+" type="button" />
+                    </div>
+                    <div class="row">
+                        <input
+                            type="button"
+                            id="zero"
+                            class="number"
+                            value="0"
+                        />
+                        <input id="decimal" value="." type="button" />
+                        <input type="button" id="calculate" value="=" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: monospace;
+}
+
+body {
+    background-color: cadetblue;
+}
+
+.main {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 300px;
+    height: 500px;
+    border-radius: 1rem;
+    gap: 10px;
+    padding: 15px;
+    background-color: black;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+input[type="button"] {
+    display: block;
+    font-size: 2em;
+    padding: 10px;
+    width: 75px;
+    border: 0px;
+    border-radius: 50%;
+}
+
+.operator {
+    background-color: brown;
+    color: white;
+}
+
+.operator:hover {
+    background-color: burlywood;
+}
+
+.operator:focus {
+    background-color: white;
+    color: burlywood;
+}
+
+#calculate {
+    background-color: brown;
+    color: white;
+}
+
+#calculate:hover {
+    background-color: burlywood;
+}
+
+#calculate:active {
+    background-color: white;
+    color: burlywood;
+}
+
+.other {
+    background-color: darkgray;
+    color: black;
+}
+
+.other:hover {
+    background-color: lightgray;
+}
+
+.other:active {
+    background-color: white;
+}
+
+.number {
+    background-color: rgb(84, 84, 84);
+    color: white;
+}
+
+.number:hover {
+    background-color: darkgray;
+}
+
+.number:active {
+    background-color: lightgrey;
+}
+
+#decimal {
+    background-color: rgb(84, 84, 84);
+    color: white;
+}
+
+#decimal:hover {
+    background-color: darkgray;
+}
+
+#decimal:active {
+    background-color: lightgray;
+}
+
+#input-box {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+#input {
+    width: 100%;
+    text-align: end;
+    font-size: 2.5rem;
+    padding-inline-end: 1.5rem;
+    color: white;
+    user-select: none;
+}
+
+#zero {
+    width: 165px;
+    border-radius: 25px;
+    text-align: start;
+    padding-inline-start: 1.2rem;
+}
+
+#state {
+    padding: 10px;
+    background-color: black;
+    color: lightgray;
+    border: none;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#state:hover {
+    background-color: grey;
+}
+
+#state:active {
+    background-color: darkgray;
+}
