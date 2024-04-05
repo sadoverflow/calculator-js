@@ -62,7 +62,7 @@ signButton.addEventListener("click", () => {
     if (value === 0) return;
     if (currentState.currentValue && currentState.previousValue) {
         currentState.currentValue = value * -1;
-        input.innerHTML = String(value);
+        currentState.setInput(String(value));
         return;
     }
     currentState.previousValue = value * -1;
@@ -74,7 +74,7 @@ percentButton.addEventListener("click", () => {
     const value = parseFloat(currentState.getInput());
     if (currentState.currentValue && currentState.previousValue) {
         currentState.currentValue = value / 100;
-        input.innerHTML = String(value);
+        currentState.setInput(String(value));
         return;
     }
     currentState.previousValue = value / 100;
@@ -208,3 +208,4 @@ const handleOperators = (event) => {
 for (let i = 0; i < operators.length; i++) {
     operators[i].addEventListener("click", handleOperators);
 }
+
