@@ -5,7 +5,7 @@ const clearButton = document.getElementById("clear");
 const signButton = document.getElementById("sign");
 const calculateButton = document.getElementById("calculate");
 const percentButton = document.getElementById("percent");
-const decimalButon = document.getElementById("decimal");
+const decimalButton = document.getElementById("decimal");
 const getCurrentState = document.getElementById("state");
 
 const currentState = {
@@ -82,7 +82,7 @@ percentButton.addEventListener("click", () => {
     currentState.setInput(String(value));
 });
 
-decimalButon.addEventListener("click", () => {
+decimalButton.addEventListener("click", () => {
     let value = currentState.getInput();
     if (value.includes(".")) return;
     if (currentState.currentValue) {
