@@ -58,26 +58,28 @@ calculateButton.addEventListener("click", () => {
 });
 
 signButton.addEventListener("click", () => {
-    const value = parseFloat(currentState.getInput());
+    let value = parseFloat(currentState.getInput());
     if (value === 0) return;
+    value *= -1;
     if (currentState.currentValue && currentState.previousValue) {
-        currentState.currentValue = value * -1;
+        currentState.currentValue = value;
         currentState.setInput(String(value));
         return;
     }
-    currentState.previousValue = value * -1;
+    currentState.previousValue = value;
     currentState.currentValue = "";
     currentState.setInput(String(value));
 });
 
 percentButton.addEventListener("click", () => {
-    const value = parseFloat(currentState.getInput());
+    let value = parseFloat(currentState.getInput());
+    value /= 100;
     if (currentState.currentValue && currentState.previousValue) {
-        currentState.currentValue = value / 100;
+        currentState.currentValue = value;
         currentState.setInput(String(value));
         return;
     }
-    currentState.previousValue = value / 100;
+    currentState.previousValue = value;
     currentState.currentValue = "";
     currentState.setInput(String(value));
 });
@@ -85,12 +87,14 @@ percentButton.addEventListener("click", () => {
 decimalButton.addEventListener("click", () => {
     let value = currentState.getInput();
     if (value.includes(".")) return;
+    value += ".";
     if (currentState.currentValue) {
-        currentState.currentValue = value + ".";
+        currentState.currentValue = value;
     }
     if (currentState.previousValue && !currentState.currentValue) {
         currentState.currentValue = "0.";
         currentState.setInput(currentState.currentValue);
+
         return;
     }
     currentState.setInput(value);
