@@ -6,7 +6,6 @@ const signButton = document.getElementById("sign");
 const calculateButton = document.getElementById("calculate");
 const percentButton = document.getElementById("percent");
 const decimalButton = document.getElementById("decimal");
-const getCurrentState = document.getElementById("state");
 
 const currentState = {
     currentValue: "0",
@@ -28,8 +27,6 @@ const clear = () => {
     currentState.operator = "";
     currentState.helper = "";
 };
-
-getCurrentState.addEventListener("click", () => console.log(currentState));
 
 clearButton.addEventListener("click", clear);
 
@@ -54,6 +51,16 @@ calculateButton.addEventListener("click", () => {
             currentState.previousValue,
             currentState.operator
         );
+    } else if (
+        currentState.currentValue &&
+        !currentState.previousValue &&
+        currentState.helper
+    ) {
+        calculate(
+            currentState.helper,
+            currentState.currentValue,
+            currentState.operator
+        );
     }
 });
 
@@ -63,12 +70,11 @@ signButton.addEventListener("click", () => {
     value *= -1;
     if (currentState.currentValue && currentState.previousValue) {
         currentState.currentValue = value;
-        currentState.setInput(String(value));
-        return;
+    } else {
+        currentState.previousValue = value;
+        currentState.currentValue = "";
     }
-    currentState.previousValue = value;
-    currentState.currentValue = "";
-    currentState.setInput(String(value));
+    currentState.setInput(value);
 });
 
 percentButton.addEventListener("click", () => {
@@ -76,25 +82,25 @@ percentButton.addEventListener("click", () => {
     value /= 100;
     if (currentState.currentValue && currentState.previousValue) {
         currentState.currentValue = value;
-        currentState.setInput(String(value));
-        return;
+    } else {
+        currentState.previousValue = value;
+        currentState.currentValue = "";
     }
-    currentState.previousValue = value;
-    currentState.currentValue = "";
-    currentState.setInput(String(value));
+    currentState.setInput(value);
 });
 
 decimalButton.addEventListener("click", () => {
     let value = currentState.getInput();
-    if (value.includes(".")) return;
-    value += ".";
+    if (!value.includes(".")) {
+        value += ".";
+    }
     if (currentState.currentValue) {
         currentState.currentValue = value;
     }
     if (currentState.previousValue && !currentState.currentValue) {
         currentState.currentValue = "0.";
+        currentState.previousValue = "";
         currentState.setInput(currentState.currentValue);
-
         return;
     }
     currentState.setInput(value);
@@ -124,39 +130,45 @@ const calculate = (firstValue, secondValue, operator) => {
     firstValue = parseFloat(firstValue);
     secondValue = parseFloat(secondValue);
     if (operator === "+") {
-        let result = String(round(secondValue + firstValue, 10 ** 8));
+        let result = firstValue + secondValue;
         if (parseFloat(result) >= 10 ** 11) {
             clear();
             alert("The number you trying to calculate is too large");
             return;
         }
-        if (currentState.currentValue) {
+        const n = parseInt(result).toString().length;
+        result = String(round(result, 10 ** (10 - n)));
+        if (currentState.currentValue && currentState.previousValue) {
             currentState.helper = currentState.currentValue;
         }
         currentState.currentValue = "";
         currentState.previousValue = result;
         currentState.setInput(result);
     } else if (operator === "-") {
-        let result = String(round(secondValue - firstValue, 10 ** 8));
+        let result = secondValue - firstValue;
         if (parseFloat(result) >= 10 ** 11) {
             clear();
             alert("The number you trying to calculate is too large");
             return;
         }
-        if (currentState.currentValue) {
+        const n = parseInt(result).toString().length;
+        result = String(round(result, 10 ** (10 - n)));
+        if (currentState.currentValue && currentState.previousValue) {
             currentState.helper = currentState.currentValue;
         }
         currentState.currentValue = "";
         currentState.previousValue = result;
         currentState.setInput(result);
     } else if (operator === "×") {
-        let result = String(secondValue * firstValue);
+        let result = firstValue * secondValue;
         if (parseFloat(result) >= 10 ** 11) {
             clear();
             alert("The number you trying to calculate is too large");
             return;
         }
-        if (currentState.currentValue) {
+        const n = parseInt(result).toString().length;
+        result = String(round(result, 10 ** (10 - n)));
+        if (currentState.currentValue && currentState.previousValue) {
             currentState.helper = currentState.currentValue;
         }
         currentState.currentValue = "";
@@ -168,8 +180,10 @@ const calculate = (firstValue, secondValue, operator) => {
             alert("You cant divide by zero");
             return;
         }
-        let result = String(round(secondValue / firstValue, 10 ** 7));
-        if (currentState.currentValue) {
+        let result = secondValue / firstValue;
+        const n = parseInt(result).toString().length;
+        result = String(round(result, 10 ** (10 - n)));
+        if (currentState.currentValue && currentState.previousValue) {
             currentState.helper = currentState.currentValue;
         }
         currentState.currentValue = "";
@@ -212,4 +226,3 @@ const handleOperators = (event) => {
 for (let i = 0; i < operators.length; i++) {
     operators[i].addEventListener("click", handleOperators);
 }
-
